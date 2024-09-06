@@ -28,7 +28,12 @@ const NavBar = () => {
     <>
       <Box bg={useColorModeValue('#657166', 'darkcyan')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
+          <Box>KayFs</Box>
+          <box><a href="#">Nosotros</a></box>
+          <box><a href="#">Hombres</a></box>
+          <box><a href="#">Inicio</a></box>
+          <box><a href="#">Mujeres</a></box>
+          <box><a href="#">Contacto</a></box>
 
           <Flex alignItems={'center'}>
             <CartWidget  />
