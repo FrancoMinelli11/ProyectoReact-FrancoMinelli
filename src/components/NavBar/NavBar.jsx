@@ -17,7 +17,6 @@ import {
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import CartWidget from '../CartWidget/CartWidget'
-import { style } from 'framer-motion/client'
 
 
 

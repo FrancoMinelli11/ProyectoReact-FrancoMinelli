@@ -8,8 +8,16 @@ const Contador = () => {
     }
     return <Box>
     Valor del estado: {count}
-    <button onClick={() => quantityObj(1)}>+</button>
-    <button onClick={() => quantityObj(-1) }>-</button>
+    <button onClick={() => {
+      if(count < 10){
+        quantityObj(1)
+      }else{quantityObj(0)}
+    }}>+</button>
+    <button onClick={() => {
+      if(count > 0){
+        quantityObj(-1)
+      }else{quantityObj(0)}
+    } }>-</button>
     </Box>
 }
 
