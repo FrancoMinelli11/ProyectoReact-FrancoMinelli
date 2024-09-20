@@ -1,33 +1,20 @@
+import { useEffect, useState } from "react";
 import ItemlistContainer from "../components/ItemListContainer/ItemListContainer"
+import { getAllProducts } from "../services/products.services";
+import Loader from "../components/Loader/Loader";
 const Hombres = () => {
-    const HombresP = [
-        {
-            "nombre":"Buzo Beyond",
-            "foto": "src/assets/buzo-hombre-1.png",
-            "precio": 14000,
-            "descripcion":"Buzo ultra épico papus"
-        },
-        {
-            "nombre":"Remera W-Wings",
-            "foto": "src/assets/remera-3.png",
-            "precio": 14000,
-            "descripcion":"Remera suuper top"
-        },
-        {
-            "nombre":"Buzo Freestyle",
-            "foto": "src/assets/buzo-hombre-3.png",
-            "precio": 14000,
-            "descripcion":"Buzinii suuper top"
-        },
-        {
-            "nombre":"Remera Wings",
-            "foto": "src/assets/remera-outfit.png",
-            "precio": 14000,
-            "descripcion":"Remera good"
-        }
-    ];
+    const [HombresP,setHombresP] = useState([]);
+    const [Anillo,setAnillo] = useState(true);
+    useEffect(()=>{
+        getAllProducts()
+        .then((res) => {
+            setHombresP(res.data.products)
+        })
+        .catch((error) => {console.log(error)})
+        .finally(() => {setAnillo(false)})
+    },[]);
 
-    return <ItemlistContainer products={HombresP} />
+    return Anillo ? <Loader></Loader> : <ItemlistContainer products={HombresP} />
 };
 
 export default Hombres;

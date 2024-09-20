@@ -42,7 +42,7 @@ return(
         <Box h={'200px'} borderBottom={'1px'} borderColor="black">
           <Img
             src={
-              item.foto
+              item.thumbnail
             }
             roundedTop={'sm'}
             objectFit="contain"
@@ -54,14 +54,14 @@ return(
         <Box p={4}>
           <Box bg="black" display={'inline-block'} px={2} py={1} color="white" mb={2}>
             <Text fontSize={'xs'} fontWeight="medium">
-              {item.precio}
+              ${item.price}
             </Text>
           </Box>
           <Heading color={'black'} fontSize={'2xl'} noOfLines={1}>
-            {item.nombre}
+            {item.title}
           </Heading>
-          <Text color={'gray.500'} noOfLines={2}>
-{item.descripcion}
+          <Text color={'gray.500'} noOfLines={2} >
+{item.description}
           </Text>
         </Box>
         <HStack borderTop={'1px'} color="black">
