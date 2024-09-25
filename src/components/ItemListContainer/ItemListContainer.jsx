@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   HStack,
 } from '@chakra-ui/react'
+import { Contador } from '../Contador';
 
 //Renderizado ItemListContainer
 
@@ -71,6 +72,7 @@ return(
             )
         })}
     </Flex>
+    <Contador></Contador>
     </Box>
     
 );

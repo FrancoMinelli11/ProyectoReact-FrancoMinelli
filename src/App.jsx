@@ -1,14 +1,13 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import {Contador} from "./components/Contador";
-import MainLayout from "../Layouts/MainLayout/MainLayout";
-import { Hombres } from "./pages";
+import MainLayout from "./Layouts/MainLayout/MainLayout";
+import { MainRouter } from "./router";
 
 const App = () => {
   return <ChakraProvider>
     <MainLayout>
-    <Hombres></Hombres>
+    <MainRouter/>
     </MainLayout>
-    <Contador></Contador>
   </ChakraProvider>;
 };
 
