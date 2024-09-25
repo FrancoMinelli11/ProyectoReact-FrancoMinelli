@@ -1,7 +1,7 @@
 import { useColorMode } from "@chakra-ui/react";
 import { BsCart2 } from "react-icons/bs";
 
-const CartWidget = () => {
+export const CartWidget = () => {
   const { colorMode } = useColorMode();
 
   return (
@@ -20,5 +20,3 @@ const CartWidget = () => {
     </div>
   );
 };
-
-export default CartWidget;

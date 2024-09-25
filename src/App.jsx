@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import Contador from "./components/Contador/Contador";
-import MainLayout from "./components/MainLayout/MainLayout";
-import Hombres from "./pages/Hombres";
+import {Contador} from "./components/Contador";
+import MainLayout from "../Layouts/MainLayout/MainLayout";
+import { Hombres } from "./pages";
 
 const App = () => {
   return <ChakraProvider>

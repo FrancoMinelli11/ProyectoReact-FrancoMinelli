@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react"
 import React, { useState } from "react";
 
-const Contador = () => {
+export const Contador = () => {
     const [count, setCount] = useState(0);
     const quantityObj = (indice) => {
       setCount((prevCount) => prevCount + indice)
@@ -20,5 +20,3 @@ const Contador = () => {
     } }>-</button>
     </Box>
 }
-
-export default Contador

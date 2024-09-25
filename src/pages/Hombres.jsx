@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import ItemlistContainer from "../components/ItemListContainer/ItemListContainer"
 import { getAllProducts } from "../services/products.services";
-import Loader from "../components/Loader/Loader";
-const Hombres = () => {
+import {Loader, ItemListContainer} from '../components'
+export const Hombres = () => {
     const [HombresP,setHombresP] = useState([]);
     const [Anillo,setAnillo] = useState(true);
     useEffect(()=>{
@@ -14,7 +13,5 @@ const Hombres = () => {
         .finally(() => {setAnillo(false)})
     },[]);
 
-    return Anillo ? <Loader></Loader> : <ItemlistContainer products={HombresP} />
+    return Anillo ? <Loader></Loader> : <ItemListContainer products={HombresP} />
 };
-
-export default Hombres;

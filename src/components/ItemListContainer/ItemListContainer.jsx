@@ -13,7 +13,7 @@ import {
 
 //Renderizado ItemListContainer
 
-const ItemListContainer = ({products}) => {
+export const ItemListContainer = ({products}) => {
     const {colorMode} = useColorMode();
     const h1Ref = useRef(null);
     const changeTitle = () => {
@@ -75,5 +75,3 @@ return(
     
 );
 }
-
-export default ItemListContainer
