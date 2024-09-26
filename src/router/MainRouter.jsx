@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Hombres, NotFound } from "../pages"
+import { Hombres, ItemDetail, NotFound } from "../pages"
 
 export const MainRouter = () => {
   return (
@@ -7,6 +7,7 @@ export const MainRouter = () => {
     <Routes>
         <Route path="/" element={<Hombres/>}/>
         <Route path="*" element={<NotFound/>}/>
+        <Route path="/item/:id" element={<ItemDetail/>}/>
     </Routes>
     </BrowserRouter>
   )

@@ -11,6 +11,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { Contador } from '../Contador';
+import { Link } from 'react-router-dom';
 
 //Renderizado ItemListContainer
 
@@ -41,6 +42,7 @@ return(
         borderColor="black"
         boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan')}>
         <Box h={'200px'} borderBottom={'1px'} borderColor="black">
+          <Link to={`./item/${item.id}`}>
           <Img
             src={
               item.thumbnail
@@ -51,6 +53,7 @@ return(
             w="full"
             alt={'Blog Image'}
           />
+          </Link>
         </Box>
         <Box p={4}>
           <Box bg="black" display={'inline-block'} px={2} py={1} color="white" mb={2}>
