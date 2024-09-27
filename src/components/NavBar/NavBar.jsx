@@ -30,7 +30,7 @@ export const NavBar = () => {
     <>
       <Box bg={useColorModeValue('#657166', 'darkcyan')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>KayFs</Box>
+          <Link to={"/"}><Box>KayFs</Box></Link>
           <Menu>
             <MenuButton as={Button} cursor="pointer" style={{ marginLeft: 30 }}>
               Categorias
