@@ -42,7 +42,7 @@ return(
         borderColor="black"
         boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan')}>
         <Box h={'200px'} borderBottom={'1px'} borderColor="black">
-          <Link to={`./item/${item.id}`}>
+          <Link to={`/item/${item.id}`}>
           <Img
             src={
               item.thumbnail

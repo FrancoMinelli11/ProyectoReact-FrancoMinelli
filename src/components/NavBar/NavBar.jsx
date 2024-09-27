@@ -17,10 +17,13 @@ import {
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { CartWidget } from '../CartWidget'
+import { useCategory } from '../../hooks'
+import { Link } from 'react-router-dom'
 
 
 
 export const NavBar = () => {
+  const {categories} = useCategory();
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -28,6 +31,18 @@ export const NavBar = () => {
       <Box bg={useColorModeValue('#657166', 'darkcyan')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>KayFs</Box>
+          <Menu>
+            <MenuButton as={Button} cursor="pointer" style={{ marginLeft: 30 }}>
+              Categorias
+            </MenuButton>
+            <MenuList height={"300px"} overflowY={"scroll"}>
+              {categories.map((category) => {
+                return <MenuItem key={category.slug}>
+                  <Link to={`/category/${category.slug}`}>{category.name}</Link>
+                </MenuItem>
+                    })}
+            </MenuList>
+          </Menu>
           <box><a href="#">Nosotros</a></box>
           <box><a href="#">Hombres</a></box>
           <box><a href="#">Inicio</a></box>

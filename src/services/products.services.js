@@ -7,3 +7,11 @@ export async function getAllProducts () {
 export async function getProductById (id) {
     return await axios.get(`https://dummyjson.com/products/${id}`)
 }
+
+export async function getAllCategories () {
+    return await axios.get('https://dummyjson.com/products/categories')
+}
+
+export async function getCategory (categoryId) {
+    return await axios.get(`https://dummyjson.com/products/category/${categoryId}`)
+}
