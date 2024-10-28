@@ -1,8 +1,14 @@
 import { useColorMode } from "@chakra-ui/react";
+import { useContext } from "react";
 import { BsCart2 } from "react-icons/bs";
+import { CartContext } from "../../context";
 
 export const CartWidget = () => {
   const { colorMode } = useColorMode();
+  const {cartState} = useContext(CartContext);
+
+  console.log(cartState)
+  const totalItems = cartState?.reduce((acc,item) => acc + item.qtyItem, 0);
 
   return (
     <div
@@ -16,7 +22,7 @@ export const CartWidget = () => {
       }}
     >
       <BsCart2 />
-      1
+      {totalItems}
     </div>
   );
 };

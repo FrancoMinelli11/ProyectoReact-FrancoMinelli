@@ -16,10 +16,25 @@ import {
   List,
   ListItem,
 } from '@chakra-ui/react'
+import { useContext, useState } from 'react'
 import { MdLocalShipping } from 'react-icons/md'
+import { CartContext } from '../../context';
 
 
 export const ItemDetailContainer = ({item}) => {
+  const [count, setCount] = useState(0);
+  const {cartState,addItem,removeItem} = useContext(CartContext)
+
+  const handleAddItem = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    addItem(item,newCount)
+  }
+
+  const handleRemoveItem = () => {
+    setCount(count - 1);
+    removeItem(item);
+  };
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -69,21 +84,11 @@ export const ItemDetailContainer = ({item}) => {
             
           </Stack>
 
-          <Button
-            rounded={'none'}
-            w={'full'}
-            mt={8}
-            size={'lg'}
-            py={'7'}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}>
-            Add to cart
-          </Button>
+          <Flex alignItems={'center'} width={'20%'} justifyContent={'space-between'}>
+            <Button onClick={handleRemoveItem} isDisabled={count === 0}>-</Button>
+            <Text>{count}</Text>
+            <Button onClick={handleAddItem} isDisabled={count === 10} >+</Button>
+          </Flex>
 
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
