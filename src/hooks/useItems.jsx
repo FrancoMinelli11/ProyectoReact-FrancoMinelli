@@ -1,17 +1,18 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { getAllProducts } from '../services/products.services';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
-export const useItems = () => {
+export const useItems = (collectionName) => {
     const [HombresP,setHombresP] = useState([]);
     const [Anillo,setAnillo] = useState(true);
     useEffect(()=>{
-        getAllProducts()
-        .then((res) => {
-            setHombresP(res.data.products)
-        })
-        .catch((error) => {console.log(error)})
-        .finally(() => {setAnillo(false)})
+        const itemsCollection = collection(db, collectionName)
+        
+        getDocs(itemsCollection)
+        .then((snapshot) => {setHombresP(snapshot.docs.map((doc) => ({id:doc.id, ...doc.data()})))})
+        .catch((e) => console.error(e))
+        .finally(() => setAnillo(false))
     },[]);
   return {HombresP,Anillo}
 }

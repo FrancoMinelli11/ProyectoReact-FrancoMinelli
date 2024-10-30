@@ -30,7 +30,7 @@ return(
     <Flex style={{flexWrap:"wrap",justifyContent:"space-around"}}>
         {products.map((item)=>{
             return(
-                <Center py={6}>
+                <Center py={6} key={item.id}>
       <Box
         w="xs"
         rounded={'sm'}

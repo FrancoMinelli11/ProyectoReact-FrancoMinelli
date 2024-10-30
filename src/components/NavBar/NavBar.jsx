@@ -17,13 +17,14 @@ import {
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { CartWidget } from '../CartWidget'
-import { useCategory } from '../../hooks'
+import { useItems } from '../../hooks'
 import { Link } from 'react-router-dom'
+import { CartDetails } from '../CartDetails'
 
 
 
 export const NavBar = () => {
-  const {categories} = useCategory();
+  const {HombresP} = useItems('categories')
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -36,21 +37,35 @@ export const NavBar = () => {
               Categorias
             </MenuButton>
             <MenuList height={"300px"} overflowY={"scroll"}>
-              {categories.map((category) => {
-                return <MenuItem key={category.slug}>
-                  <Link to={`/category/${category.slug}`}>{category.name}</Link>
+              {HombresP.map((category) => {
+                return <MenuItem as={Link} to={`category/${category.slug}`} key={category.slug}>
+                  {category.name}
                 </MenuItem>
                     })}
             </MenuList>
           </Menu>
-          <box><a href="#">Nosotros</a></box>
-          <box><a href="#">Hombres</a></box>
-          <box><a href="#">Inicio</a></box>
-          <box><a href="#">Mujeres</a></box>
-          <box><a href="#">Contacto</a></box>
+          <Box><a href="#">Nosotros</a></Box>
+          <Box><a href="#">Hombres</a></Box>
+          <Box><a href="#">Inicio</a></Box>
+          <Box><a href="#">Mujeres</a></Box>
+          <Box><a href="#">Contacto</a></Box>
 
           <Flex alignItems={'center'}>
-            <CartWidget  />
+          <Menu>
+                <MenuButton
+                  as={Button}
+                  _hover={{bg:'transparent'}}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={0}
+                  mr={2}>
+                  <CartWidget/>
+                </MenuButton>
+                <MenuList alignItems={'center'}>
+                  <br />
+                  <CartDetails/>
+                </MenuList>
+              </Menu>
             <Stack direction={'row'} spacing={7}>
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}

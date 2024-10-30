@@ -1,17 +1,17 @@
+import { doc, getDoc } from 'firebase/firestore'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { getProductById } from '../services/products.services'
+import { db } from '../firebase'
 
 export const useItemsById = (id) => {
     const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        getProductById(id)
-    .then((res) => {
-        setProduct(res.data)
-    })
-    .catch((error) => console.log(error))
-    .finally(() => setLoading(false))
+        const itemDoc = doc(db,'products', id);
+        getDoc(itemDoc)
+        .then((snapshot) => {setProduct({id: snapshot.id, ...snapshot.data()})})
+        .catch((e) => console.error(e))
+        .finally(() => setLoading(false))
 },[])
 return {product,loading}
 }

@@ -14,7 +14,7 @@ export const CartProvider = ({ children }) => {
         if (existingProduct) {
             setCartState(
                 cartState.map((item) =>
-                    item.id === product.id ? { ...item, qtyItem: item.qtyItem + 1 } : item
+                    item.id === product.id ? { ...item, qtyItem: item.qtyItem + qtyItem } : item
                 )
             );
         } else {
@@ -39,6 +39,9 @@ export const CartProvider = ({ children }) => {
             }
         }
     };
+    const deleteItem = (product) => {
+        setCartState(cartState.filter((item) => item.id !== product.id))
+    }
 
     return (
         <CartContext.Provider
@@ -47,6 +50,7 @@ export const CartProvider = ({ children }) => {
                 setCartState,
                 addItem,
                 removeItem,
+                deleteItem,
             }}
         >
             {children}

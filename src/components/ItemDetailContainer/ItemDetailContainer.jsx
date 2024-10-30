@@ -24,13 +24,10 @@ import { CartContext } from '../../context';
 export const ItemDetailContainer = ({item}) => {
   const [count, setCount] = useState(0);
   const {cartState,addItem,removeItem} = useContext(CartContext)
-
   const handleAddItem = () => {
     const newCount = count + 1;
     setCount(newCount);
-    addItem(item,newCount)
   }
-
   const handleRemoveItem = () => {
     setCount(count - 1);
     removeItem(item);
@@ -88,8 +85,8 @@ export const ItemDetailContainer = ({item}) => {
             <Button onClick={handleRemoveItem} isDisabled={count === 0}>-</Button>
             <Text>{count}</Text>
             <Button onClick={handleAddItem} isDisabled={count === 10} >+</Button>
-          </Flex>
-
+            </Flex>
+            <Button onClick={() => {addItem(item,count)}} >Agregar al carrito</Button>
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
             <Text>2-3 business days delivery</Text>
