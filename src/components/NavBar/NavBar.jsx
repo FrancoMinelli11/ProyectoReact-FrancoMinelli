@@ -44,11 +44,6 @@ export const NavBar = () => {
                     })}
             </MenuList>
           </Menu>
-          <Box><a href="#">Nosotros</a></Box>
-          <Box><a href="#">Hombres</a></Box>
-          <Box><a href="#">Inicio</a></Box>
-          <Box><a href="#">Mujeres</a></Box>
-          <Box><a href="#">Contacto</a></Box>
 
           <Flex alignItems={'center'}>
           <Menu>
