@@ -16,7 +16,9 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { DeleteIcon, AddIcon, MinusIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import {db} from '../../firebase'
+import { addDoc, collection } from "firebase/firestore";
+import Swal from "sweetalert2";
 export const CartDetails = () => {
   const { cartState, addItem, removeItem, deleteItem } =
     useContext(CartContext);
@@ -25,8 +27,29 @@ export const CartDetails = () => {
     0
   );
 
-  
-
+  const handleCreateOrder = () => {
+    const orderObj = {
+      items:cartState.map((item) => {
+        return{
+          id:item.id,
+          title:item.title,
+          price:item.price,
+          quantity:item.qtyItem
+        }
+      }),
+      total:total
+    }
+    console.log(orderObj)
+    const ordersCollection = collection(db, 'orders')
+    addDoc(ordersCollection,orderObj).then(({id}) => {
+      Swal.fire({
+        icon:'info',
+        title:`Se creó la orden con id: ${id}`,
+        timer:'2000',
+        showConfirmButton:false
+      })
+    })
+    }
   const handleDeleteItem = (item) => {
     deleteItem(item);
   };
@@ -107,9 +130,7 @@ export const CartDetails = () => {
               Total: ${total.toFixed(2)}
             </Text>
             <Spacer />
-            <Link to="/payment">
-              Continuar al pago
-            </Link>
+            <Button onClick={handleCreateOrder}>Crear Orden</Button>
           </Flex>
         </VStack>
       )}

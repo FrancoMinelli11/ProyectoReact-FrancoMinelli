@@ -19,18 +19,30 @@ import {
 import { useContext, useState } from 'react'
 import { MdLocalShipping } from 'react-icons/md'
 import { CartContext } from '../../context';
+import Swal from 'sweetalert2';
 
 
 export const ItemDetailContainer = ({item}) => {
   const [count, setCount] = useState(0);
-  const {cartState,addItem,removeItem} = useContext(CartContext)
+  const {cartState,addItem} = useContext(CartContext)
   const handleAddItem = () => {
+    const existingQtyInCart = cartState.find((cartItem) => cartItem.id === item.id)?.qtyItem || 0;
+    const availableStock = item.stock - existingQtyInCart;
+    
     const newCount = count + 1;
-    setCount(newCount);
-  }
+    if (newCount <= availableStock) {
+        setCount(newCount);
+    } else {
+        Swal.fire({
+          icon:'error',
+          title:'Stock insuficiente',
+          text:`Solo quedan ${availableStock} disponibles`,
+          confirmButtonText:'Aceptar'
+        })
+    }
+};
   const handleRemoveItem = () => {
     setCount(count - 1);
-    removeItem(item);
   };
   return (
     <Container maxW={'7xl'}>
@@ -84,9 +96,11 @@ export const ItemDetailContainer = ({item}) => {
           <Flex alignItems={'center'} width={'20%'} justifyContent={'space-between'}>
             <Button onClick={handleRemoveItem} isDisabled={count === 0}>-</Button>
             <Text>{count}</Text>
-            <Button onClick={handleAddItem} isDisabled={count === 10} >+</Button>
+            <Button onClick={handleAddItem} isDisabled={count >= (item.stock - item.qtyItem)}>+</Button>
             </Flex>
-            <Button onClick={() => {addItem(item,count)}} >Agregar al carrito</Button>
+            <Button onClick={() => {addItem(item, count)}} isDisabled={count === 0 || count > (item.stock - item.qtyItem)}>
+    Agregar al carrito
+</Button>
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
             <Text>2-3 business days delivery</Text>
