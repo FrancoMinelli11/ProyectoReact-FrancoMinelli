@@ -24,7 +24,7 @@ import { CartDetails } from '../CartDetails'
 
 
 export const NavBar = () => {
-  const {HombresP} = useItems('categories')
+  const {Items} = useItems('categories')
   const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -37,7 +37,7 @@ export const NavBar = () => {
               Categorias
             </MenuButton>
             <MenuList height={"300px"} overflowY={"scroll"}>
-              {HombresP.map((category) => {
+              {Items.map((category) => {
                 return <MenuItem as={Link} to={`category/${category.slug}`} key={category.slug}>
                   {category.name}
                 </MenuItem>
@@ -46,21 +46,7 @@ export const NavBar = () => {
           </Menu>
 
           <Flex alignItems={'center'}>
-          <Menu>
-                <MenuButton
-                  as={Button}
-                  _hover={{bg:'transparent'}}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}
-                  mr={2}>
-                  <CartWidget/>
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <CartDetails/>
-                </MenuList>
-              </Menu>
+            <Link to={'/cart-details'}><CartWidget/></Link>
             <Stack direction={'row'} spacing={7}>
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}

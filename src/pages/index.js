@@ -1,4 +1,4 @@
-export * from './Hombres'
+export * from './Home'
 export * from './NotFound'
 export * from './ItemDetail'
 export * from './Category'

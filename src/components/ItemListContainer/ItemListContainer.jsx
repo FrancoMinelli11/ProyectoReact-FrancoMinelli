@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 import { useColorMode } from '@chakra-ui/react';
 import {
@@ -17,16 +16,11 @@ import { Link } from 'react-router-dom';
 
 export const ItemListContainer = ({products}) => {
     const {colorMode} = useColorMode();
-    const h1Ref = useRef(null);
-    const changeTitle = () => {
-        h1Ref.current.innerHTML = "Bienvenidos al imperio de Lord Francol11👹";
-    }
 return(
     <Box style={{padding:5, marginTop:5,textAlign:"center"}}>
-    <h1 style={{color: colorMode === "light" ? "darkblue" : "lightblue",textAlign:"center",fontSize:"2rem"}} ref={h1Ref}>
+    <h1 style={{color: colorMode === "light" ? "darkblue" : "lightblue",textAlign:"center",fontSize:"2rem"}}>
         ¡Bienvenidos a KayFs!
     </h1>
-    <Button style={{color: colorMode === "light" ? "darkblue" : "lightblue",background:"darkmagenta"}} onClick={changeTitle}>¡CAMBIO!</Button>
     <Flex style={{flexWrap:"wrap",justifyContent:"space-around"}}>
         {products.map((item)=>{
             return(
